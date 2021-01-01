@@ -56,5 +56,25 @@ public class InitObj : MonoBehaviour
             }        
         }
         
+        if (Input.GetKeyUp(KeyCode.D))
+        {
+            while (!NetWork.HasNewSendDatas)
+            {
+                print("销毁物体");
+                // 组织数据
+                SourceDataEntity.SourceDataType = SourceDataType.GameObj;
+                GameObjEntity.CreateOrDestroy = false;    //Destroy 
+                GameObjEntity.ObjName = "GoodBox";
+               
+                string s1 = JsonConvert.SerializeObject(GameObjEntity);
+                SourceDataEntity.Content = s1;
+                string s2 = JsonConvert.SerializeObject(SourceDataEntity);
+            
+                // 通知发送
+                NetWork.SendDatasTemp = s2;
+                NetWork.HasNewSendDatas = true;
+            }        
+        }
+        
     }
 }

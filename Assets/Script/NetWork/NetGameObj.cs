@@ -55,7 +55,7 @@ public class NetGameObj : MonoBehaviour
                 if (find)
                 {
                     Destroy(find);
-                    print("销毁物体");
+                    print("销毁物体完成");
                 }
             }
         }
