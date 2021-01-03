@@ -7,7 +7,8 @@ namespace Script.Prefab
         public static Dictionary<string,string> Maps = new Dictionary<string, string>()
         {
             {"moodBox","moodBox"},
-            {"tree", "tree"}
+            {"tree", "tree"},
+            {"Player", "Player/Player"}
         };
     }
 }

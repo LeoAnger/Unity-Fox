@@ -1,105 +1,116 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class PlayerTest : MonoBehaviour
+namespace Script
 {
-    private Rigidbody2D rb;
-    private Collider2D coll;
-    private Animator anim;
+    public class PlayerTest : MonoBehaviour
+    {
+        private Rigidbody2D rb;
+        private Collider2D coll;
+        private Animator anim;
 
-    public float speed, jumpForce;
+        public float speed = 5, jumpForce = 18;
 
-    public Transform groundCheck;
-    public LayerMask ground;
+        public Transform GroundCheck;
+        public LayerMask ground;
 
-    public bool isGround, isJump;
+        public bool isGround = false, isJump = false;
 
-    private bool jumpPressed;
-    private int jumpCount;
+        private bool jumpPressed = false;
+        private int jumpCount = 2;    // 2段跳
     
-    // Start is called before the first frame update
-    void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
-        coll = GetComponent<Collider2D>();
-        anim = GetComponent<Animator>();
-        
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.J) && jumpCount > 0)
+        // Start is called before the first frame update
+        void Start()
         {
-            jumpPressed = true;
+            rb = GetComponent<Rigidbody2D>();
+            coll = GetComponent<Collider2D>();
+            anim = GetComponent<Animator>(); 
+        
+            Transform[] father = GetComponentsInChildren<Transform>();
+            foreach (var child in father)
+            {
+                Debug.Log(child.name);
+                if (child.name.Equals("GroundCheck"))
+                {
+                    GroundCheck = child.transform;
+                }
+            }
             
-        }
-    }
-
-    void FixedUpdate()
-    {
-        isGround = Physics2D.OverlapCircle(groundCheck.position, 0.1f, ground);
+            ground = LayerMask.GetMask("Ground");
         
-        GroundMovement();
-        Jump();
-        switchAnim();
-
-    }
-
-    void Jump()
-    {
-        if (isGround)
-        {
-            isJump = false;
-            jumpCount = 2;
         }
 
-        if (jumpPressed && isGround)
+        // Update is called once per frame
+        void Update()
         {
-            isJump = true;
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-            jumpCount--;
-            jumpPressed = false;
+            if (Input.GetKeyDown(KeyCode.J) && jumpCount > 0)
+            {
+                jumpPressed = true;
+            
+            }
         }
-        else if (jumpPressed && jumpCount > 0 && isJump)
+
+        void FixedUpdate()
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-            jumpCount--;
-            jumpPressed = false;
+            isGround = Physics2D.OverlapCircle(GroundCheck.position, 0.1f, ground);
+        
+            GroundMovement();
+            Jump();
+            switchAnim();
+
         }
-    }
+
+        void Jump()
+        {
+            if (isGround)
+            {
+                isJump = false;
+                jumpCount = 2;
+            }
+
+            if (jumpPressed && isGround)
+            {
+                isJump = true;
+                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+                jumpCount--;
+                jumpPressed = false;
+            }
+            else if (jumpPressed && jumpCount > 0 && isJump)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+                jumpCount--;
+                jumpPressed = false;
+            }
+        }
     
-    void GroundMovement()
-    {
-        float horizontalMove = Input.GetAxisRaw("Horizontal");
-        rb.velocity = new Vector2(horizontalMove * speed, rb.velocity.y);
-
-        if (horizontalMove != 0)
+        void GroundMovement()
         {
-            transform.localScale = new Vector3(horizontalMove, 1, 1);
+            float horizontalMove = Input.GetAxisRaw("Horizontal");
+            rb.velocity = new Vector2(horizontalMove * speed, rb.velocity.y);
+
+            if (horizontalMove != 0)
+            {
+                transform.localScale = new Vector3(horizontalMove, 1, 1);
+            }
         }
-    }
 
-    void switchAnim()
-    {
-        // 左右移动
-        anim.SetFloat("running", Mathf.Abs(rb.velocity.x));
+        void switchAnim()
+        {
+            // 左右移动
+            anim.SetFloat("running", Mathf.Abs(rb.velocity.x));
 
-        if (isGround)
-        {
-            anim.SetBool("falling", false);
-        } else if (!isGround && rb.velocity.y > 0)
-        {
-            // 跳跃
-            anim.SetBool("jumping", true);
-        } else if (rb.velocity.y < 0)
-        {
-            // 下落
-            anim.SetBool("jumping", false);
-            anim.SetBool("falling", true);
+            if (isGround)
+            {
+                anim.SetBool("falling", false);
+            } else if (!isGround && rb.velocity.y > 0)
+            {
+                // 跳跃
+                anim.SetBool("jumping", true);
+            } else if (rb.velocity.y < 0)
+            {
+                // 下落
+                anim.SetBool("jumping", false);
+                anim.SetBool("falling", true);
+            }
         }
     }
 }

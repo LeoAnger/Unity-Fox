@@ -33,12 +33,6 @@ namespace Script.NetWork
             }
             
         }
-        
-        void FixedUpdate()
-        {
-            //日期：2021年1月1日00点50分
-              // 使用这个方法调用   controll()无法处理Data数据 --> 手动创建物体时，执行不了  
-        }
 
         void controll()
         {

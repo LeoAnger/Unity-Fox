@@ -1,12 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class HandUI : MonoBehaviour
+namespace Script.NetWork
 {
-    public Transform follow;
-    private void Update()
+    public class HandUI : MonoBehaviour
     {
-        transform.position = Vector3.Lerp(transform.position, follow.position, 0);
+        public Transform follow;
+        private void Update()
+        {
+            transform.position = Vector3.Lerp(transform.position, follow.position, 0);
+        }
     }
 }

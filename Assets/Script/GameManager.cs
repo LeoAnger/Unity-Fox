@@ -1,23 +1,24 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+namespace Script
 {
-    // Start is called before the first frame update
-    void Start()
+    public class GameManager : MonoBehaviour
     {
-        Application.targetFrameRate = 30;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        // Scene切换
-        if(Input.GetKeyUp(KeyCode.Escape))
+        // Start is called before the first frame update
+        void Start()
         {
-            SceneManager.LoadScene(1);
+            Application.targetFrameRate = 30;
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+            // Scene切换
+            if(Input.GetKeyUp(KeyCode.Escape))
+            {
+                SceneManager.LoadScene(1);
+            }
         }
     }
 }

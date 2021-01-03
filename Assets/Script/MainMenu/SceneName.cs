@@ -1,4 +1,4 @@
-﻿namespace Assets.Script.MainMenu
+﻿namespace Script.MainMenu
 {
     public class SceneName
     {

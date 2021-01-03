@@ -5,6 +5,7 @@
         CreateRoom,            // 创建房间
         JoinInRoom,            // 加入房间
         RoomInfo,              // 房间信息
+        PlayerInfo,            // 玩家信息
         GameMatching,          // 游戏匹配
         GameStart,             // 游戏开始
         GameOver,              // 游戏结束
