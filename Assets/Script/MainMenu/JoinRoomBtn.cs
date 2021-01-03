@@ -5,6 +5,7 @@ using System.Threading;
 using Script.Enum;
 using Script.NetWork;
 using Script.NetWork.RoomInfo;
+using Script.NetWork.UserInfo;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
