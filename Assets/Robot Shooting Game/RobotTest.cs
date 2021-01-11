@@ -15,6 +15,9 @@ public class RobotTest : MonoBehaviour
     public Transform firPoint;
     public List<BulletCharacter> tempBullets;
     
+    public AudioClip clip;
+    
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +27,7 @@ public class RobotTest : MonoBehaviour
         
         tempBullets = new List<BulletCharacter>();
         firPoint = this.transform.Find("ShootPos");
+        clip = Resources.Load<AudioClip>("Music/sandan");
     }
 
     // Update is called once per frame
@@ -47,7 +51,7 @@ public class RobotTest : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.J))
         {
             StopAllCoroutines();
-            ClearBulletsList();
+            //ClearBulletsList();
             StartCoroutine(FirShot());
         }
         
@@ -115,12 +119,15 @@ public class RobotTest : MonoBehaviour
                 switch (j)
                 {
                     case 0:
+                        AudioSource.PlayClipAtPoint(clip, firPoint.transform.position, 1f);
                         CreatBullet(bulletDir, firPoint.transform.position);  //发射第一颗子弹，方向不需要进行旋转
                         break;
                     case 1:
+                        AudioSource.PlayClipAtPoint(clip, firPoint.transform.position, 1f);
                         CreatBullet(bulletDir, firPoint.transform.position);  //发射第一颗子弹，方向不需要进行旋转
                         break;
                     case 2:
+                        AudioSource.PlayClipAtPoint(clip, firPoint.transform.position, 1f);
                         CreatBullet(bulletDir, firPoint.transform.position);  //发射第一颗子弹，方向不需要进行旋转
                         break;
                 }
@@ -132,7 +139,7 @@ public class RobotTest : MonoBehaviour
     /// <summary>
     /// 清空子弹列表
     /// </summary>
-    public void ClearBulletsList()
+    /*public void ClearBulletsList()
     {
         if (tempBullets.Count>0)
         {
@@ -144,7 +151,7 @@ public class RobotTest : MonoBehaviour
 
         tempBullets.Clear();
 
-    }
+    }*/
     
     public BulletCharacter CreatBullet(Vector3 dir,Vector3 creatPoint)
     {

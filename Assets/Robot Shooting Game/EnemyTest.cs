@@ -9,11 +9,19 @@ namespace Robot_Shooting_Game
 
         private GameObject bulletPrefab;
         private Transform firePos;
-        
+
+        private AudioClip BaoZha;
+
+
+        void Awake()
+        {
+            bulletPrefab = Resources.Load("Bullet/Lazer2") as GameObject;
+            BaoZha = Resources.Load<AudioClip>("Music/baoz");
+        }
+
         // Start is called before the first frame update
         void Start()
         {
-            bulletPrefab = Resources.Load("Bullet/Lazer2") as GameObject;
             firePos = transform.GetChild(0);
             GetComponent<BoxCollider2D>().isTrigger = true;
             GetComponent<Rigidbody2D>().gravityScale = 0;
@@ -24,6 +32,11 @@ namespace Robot_Shooting_Game
         void Update()
         {
             transform.Translate(Vector3.left * Time.deltaTime * speed);
+            if (transform.position.x < -10)
+            {
+                print("自行销毁敌机。。。");
+                Destroy(gameObject);
+            }
         }
     
         void OnTriggerEnter2D(Collider2D coll)
@@ -37,6 +50,7 @@ namespace Robot_Shooting_Game
                     //1.显示爆炸动画
                     GetComponent<Animator>().SetBool("Explosion", true);
                     //2.爆炸声音
+                    AudioSource.PlayClipAtPoint(BaoZha, firePos.position, 1f);
                     //2.销毁自己
                     break;
                 case   "BulletP2" :

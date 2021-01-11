@@ -19,6 +19,11 @@ namespace Robot_Shooting_Game
         void Update()
         {
             transform.Translate(Vector3.left * Time.deltaTime * Speed);
+            if (transform.position.x < -10)
+            {
+                //print("自行销毁子弹。。。");
+                Destroy(gameObject);
+            }
         }
     }
 }

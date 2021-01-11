@@ -29,6 +29,14 @@ public class BulletCharacter : MonoBehaviour
         Debug.Log("碰撞发生OnTriggerEnter2D-Player/t" + coll.name + "\n" +
                   coll.gameObject.layer + "\n" +
                   coll.gameObject.GetComponent<SpriteRenderer>().sortingLayerName);
+        switch (coll.gameObject.GetComponent<SpriteRenderer>().sortingLayerName)
+        {
+            case "Enemy" :
+                Destroy(gameObject);
+                break;
+                
+        }
+        
     }
 
     public void BulletMove()

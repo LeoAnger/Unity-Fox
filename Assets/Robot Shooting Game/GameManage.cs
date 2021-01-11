@@ -11,7 +11,7 @@ public class GameManage : MonoBehaviour
     void Start()
     {
         enemys = Resources.LoadAll<GameObject>("Enemys");
-        InvokeRepeating("CreateEnemys", 0, 1);
+        InvokeRepeating("CreateEnemys", 0, 2);
     }
 
     // Update is called once per frame
