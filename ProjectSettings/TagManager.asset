@@ -55,9 +55,18 @@ TagManager:
   - name: Gem
     uniqueID: 2622193035
     locked: 0
+  - name: Player
+    uniqueID: 583899939
+    locked: 0
+  - name: BulletP1
+    uniqueID: 108582063
+    locked: 0
+  - name: BulletP2
+    uniqueID: 3689677105
+    locked: 0
   - name: Enemy
     uniqueID: 1021246079
     locked: 0
-  - name: Player
-    uniqueID: 583899939
+  - name: BulletEnemy
+    uniqueID: 3299608963
     locked: 0
