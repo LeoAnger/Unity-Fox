@@ -63,10 +63,6 @@ public class RobotTest : MonoBehaviour
         _rb.velocity = new Vector2(horizontalMove * Speed, _rb.velocity.y);
         _rb.velocity = new Vector2(_rb.velocity.x,vertical * Speed);
 
-        /*if (horizontalMove != 0)
-        {
-            transform.localScale = new Vector3(horizontalMove, 1, 1);
-        }*/
     }
     
     /// <summary>

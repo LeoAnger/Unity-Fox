@@ -34,7 +34,7 @@ public class GameManage : MonoBehaviour
         print("speed:" + speed);
 
         enemy.tag = "Enemy";
-        enemy.active = true;
+        enemy.SetActive(true);
 
     }
 }

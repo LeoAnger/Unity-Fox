@@ -38,8 +38,6 @@ namespace Robot_Shooting_Game
                         Destroy(gameObject);
                     }
                     break;
-                default:
-                    break;
             }
         }
     }

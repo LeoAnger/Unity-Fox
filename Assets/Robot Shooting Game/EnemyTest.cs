@@ -68,7 +68,7 @@ namespace Robot_Shooting_Game
             bullet.AddComponent<EnemyBullet>();
             bullet.GetComponent<EnemyBullet>().Speed = Random.Range(5, 8);
             bullet.name = "EnemyBullet";
-            bullet.active = true;
+            bullet.SetActive(true);
         }
         
         public void DestroyThis()
