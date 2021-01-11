@@ -21,7 +21,6 @@ public class BulletCharacter : MonoBehaviour
         {
             BulletMove();
         }
-
     }
     
     void OnTriggerEnter2D(Collider2D coll)
@@ -42,6 +41,10 @@ public class BulletCharacter : MonoBehaviour
     public void BulletMove()
     {
         transform.position += dir * speed * Time.deltaTime;
+        if (transform.position.x > 10)
+        {
+            Destroy(gameObject);
+        }
     }
 
     /// <summary>

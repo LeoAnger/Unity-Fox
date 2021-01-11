@@ -70,3 +70,6 @@ TagManager:
   - name: BulletEnemy
     uniqueID: 3299608963
     locked: 0
+  - name: Wall
+    uniqueID: 1722412941
+    locked: 0

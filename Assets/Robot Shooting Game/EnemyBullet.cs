@@ -13,6 +13,7 @@ namespace Robot_Shooting_Game
         {
             GetComponent<BoxCollider2D>().isTrigger = true;
             GetComponent<Rigidbody2D>().gravityScale = 0;
+            Speed = Random.Range(4, 7);
         }
 
         // Update is called once per frame
@@ -23,6 +24,22 @@ namespace Robot_Shooting_Game
             {
                 //print("自行销毁子弹。。。");
                 Destroy(gameObject);
+            }
+        }
+        
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            switch (other.tag)
+            {
+                case "Player" :
+                    if (this.name == "EnemyBullet")
+                    {
+                        other.SendMessage("Damage", 1, SendMessageOptions.DontRequireReceiver);
+                        Destroy(gameObject);
+                    }
+                    break;
+                default:
+                    break;
             }
         }
     }

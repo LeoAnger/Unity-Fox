@@ -7,7 +7,7 @@ namespace Robot_Shooting_Game
         
         public int speed;    //移动速度
 
-        private GameObject bulletPrefab;
+        public GameObject bulletPrefab;
         private Transform firePos;
 
         private AudioClip BaoZha;
@@ -15,7 +15,7 @@ namespace Robot_Shooting_Game
 
         void Awake()
         {
-            bulletPrefab = Resources.Load("Bullet/Lazer2") as GameObject;
+            //bulletPrefab = Resources.Load("Bullet/Lazer2") as GameObject;
             BaoZha = Resources.Load<AudioClip>("Music/baoz");
         }
 
@@ -68,6 +68,7 @@ namespace Robot_Shooting_Game
             bullet.AddComponent<EnemyBullet>();
             bullet.GetComponent<EnemyBullet>().Speed = Random.Range(5, 8);
             bullet.name = "EnemyBullet";
+            bullet.active = true;
         }
         
         public void DestroyThis()

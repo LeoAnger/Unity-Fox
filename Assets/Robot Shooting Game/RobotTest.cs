@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RobotTest : MonoBehaviour
 {
@@ -9,13 +10,14 @@ public class RobotTest : MonoBehaviour
     private Collider2D _coll;
     private Animator _anim;
 
+    public int Hp = 10;    //血量
     public float Speed = 5, JumpForce = 18;
     
     public BulletCharacter bulletTemplate;
     public Transform firPoint;
-    public List<BulletCharacter> tempBullets;
     
     public AudioClip clip;
+    public Text HpText;
     
     
     // Start is called before the first frame update
@@ -25,9 +27,8 @@ public class RobotTest : MonoBehaviour
         _coll = GetComponent<Collider2D>();
         _anim = GetComponent<Animator>(); 
         
-        tempBullets = new List<BulletCharacter>();
-        firPoint = this.transform.Find("ShootPos");
-        clip = Resources.Load<AudioClip>("Music/sandan");
+//        firPoint = this.transform.Find("ShootPos");
+//        clip = Resources.Load<AudioClip>("Music/sandan");
     }
 
     // Update is called once per frame
@@ -38,8 +39,6 @@ public class RobotTest : MonoBehaviour
     
     void FixedUpdate()
     {
-//        IsGround = Physics2D.OverlapCircle(GroundCheck.position, 0.1f, Ground);
-        
         Movement();
         ShootFire();
 
@@ -136,29 +135,32 @@ public class RobotTest : MonoBehaviour
         }
     }
     
-    /// <summary>
-    /// 清空子弹列表
-    /// </summary>
-    /*public void ClearBulletsList()
-    {
-        if (tempBullets.Count>0)
-        {
-            for (int i=(tempBullets.Count-1);i>=0;i--)
-            {
-                Destroy(tempBullets[i].gameObject);
-            }
-        }
-
-        tempBullets.Clear();
-
-    }*/
     
     public BulletCharacter CreatBullet(Vector3 dir,Vector3 creatPoint)
     {
         BulletCharacter bulletCharacter = Instantiate(bulletTemplate, creatPoint, Quaternion.identity);
         bulletCharacter.gameObject.SetActive(true);
         bulletCharacter.dir = dir;
-        tempBullets.Add(bulletCharacter);
         return bulletCharacter;
+    }
+    
+    private void Damage(int damage)
+    {
+        if (Hp > 0)
+        {
+            Hp -= damage;
+            print("玩家血量：" + Hp);
+            HpText.text = "HP : " + Hp;
+            if (Hp <= 0)
+            {
+                //玩家死亡
+                Hp = 0;
+                UnityEditor.EditorApplication.isPlaying = false;
+            }
+            else
+            {
+                //受伤
+            }
+        }
     }
 }

@@ -6,12 +6,12 @@ using UnityEngine;
 public class GameManage : MonoBehaviour
 {
     
-    private GameObject[] enemys;
+    public GameObject[] enemys;
     // Start is called before the first frame update
     void Start()
     {
-        enemys = Resources.LoadAll<GameObject>("Enemys");
-        InvokeRepeating("CreateEnemys", 0, 2);
+        //enemys = Resources.LoadAll<GameObject>("Enemys");
+        InvokeRepeating(nameof(CreateEnemys), 0, 2);
     }
 
     // Update is called once per frame
@@ -28,12 +28,13 @@ public class GameManage : MonoBehaviour
             new Vector3(10, Random.Range(-4f, 4f), 1),
             Quaternion.identity);
 
-        enemy.AddComponent<EnemyTest>();
+        //enemy.AddComponent<EnemyTest>();
         int speed = Random.Range(1, 3);
         enemy.GetComponent<EnemyTest>().speed = speed;
         print("speed:" + speed);
 
         enemy.tag = "Enemy";
+        enemy.active = true;
 
     }
 }
