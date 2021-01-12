@@ -144,8 +144,8 @@ public class RobotTest : MonoBehaviour
     {
         if (Hp > 0)
         {
-            Hp -= damage;
-            print("玩家血量：" + Hp);
+            Hp -= 1;
+            //print("玩家血量：" + Hp);
             HpText.text = "HP : " + Hp;
             if (Hp <= 0)
             {

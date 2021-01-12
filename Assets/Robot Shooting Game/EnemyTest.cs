@@ -65,7 +65,7 @@ namespace Robot_Shooting_Game
         private void Attack()
         {
             GameObject bullet = Instantiate(bulletPrefab, firePos.position, firePos.rotation);
-            bullet.AddComponent<EnemyBullet>();
+//            bullet.AddComponent<EnemyBullet>();
             bullet.GetComponent<EnemyBullet>().Speed = Random.Range(5, 8);
             bullet.name = "EnemyBullet";
             bullet.SetActive(true);

@@ -6,7 +6,7 @@ namespace Robot_Shooting_Game
     [RequireComponent(typeof(Rigidbody2D))]
     public class EnemyBullet : MonoBehaviour
     {
-    
+        private bool b = true;
         public int Speed = 10;
         // Start is called before the first frame update
         void Start()
@@ -26,7 +26,7 @@ namespace Robot_Shooting_Game
                 Destroy(gameObject);
             }
         }
-        
+
         private void OnTriggerEnter2D(Collider2D other)
         {
             switch (other.tag)
